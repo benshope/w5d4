@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<h1>Employee</h1>
 
 <p>
   <b>Name:</b>
@@ -7,9 +7,22 @@
 
 <p>
   <b>Supervisor:</b>
-  <%= @employee.supervisor %>
+  <%= @employee.supervisor.name unless @employee.supervisor.nil? %>
 </p>
 
+<p>
+  <b>Subordinates:</b>
+  <% @employee.subordinates.each do |subordinate| %>
+  	<p><%= link_to subordinate.name, employee_path(subordinate) %></p>
+  <% end %>
+</p>
+
+<p>
+  <b>Teams:</b>
+  <% @employee.teams.each do |team| %>
+  	<p><%= link_to team.name, team_path(team) %></p>
+  <% end %>
+</p>
 
 <%= link_to 'Edit', edit_employee_path(@employee) %> |
 <%= link_to 'Back', employees_path %>

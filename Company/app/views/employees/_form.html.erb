@@ -1,25 +1,23 @@
 <%= form_for(@employee) do |f| %>
-  <% if @employee.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
-
-      <ul>
-      <% @employee.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :supervisor %><br />
-    <%= f.text_field :supervisor %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %><br>
+    <%= f.label :supervisor %><br>
+    <%= f.select :supervisor_id, @employees.map { |employee| [employee.name, employee.id] } %><br>
+    <%= form_for :employee_profiles do |epf| %>
+      <%= epf.label :height, "Height Inches" %><br>
+      <%= epf.number_field :height %><br>
+      <%= epf.label :salary %><br>
+      <%= epf.number_field :salary %><br>
+      <%= epf.label :favoritefood, "Favorite Food" %><br>
+      <%= epf.text_field :favoritefood %><br>
+      <%= epf.label :favoriteday, "Favorite Day" %><br>
+      <%= epf.text_field :favoriteday %><br>
+      <%= epf.label :dob, "Date of Birth" %><br>
+      <%= epf.date_select :dob %><br>
+    <% end %>
+    <%= f.label :teams, "Teams" %><br>
+    <% @teams.each do |team| %>
+      <%= check_box_tag 'teams[]', team.id %> <%= "  #{team.name}" %><br>
+    <% end %>
+    <%= f.submit %><br>
 <% end %>

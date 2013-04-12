@@ -1,25 +1,11 @@
 <%= form_for(@team) do |f| %>
-  <% if @team.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@team.errors.count, "error") %> prohibited this team from being saved:</h2>
-
-      <ul>
-      <% @team.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :supervisor %><br />
-    <%= f.text_field :supervisor %>
-  </div>
-  <div class="actions">
+    <%= f.label :name, "Team Name" %><br>
+    <%= f.text_field :name %><br>
+    <%= f.label :supervisor, "Team Supervisor" %><br>
+    <%= f.select :supervisor_id, @employees.map { |employee| [employee.name, employee.id] } %><br>
+    <%= f.label :employees, "Team Members" %><br>
+    <% @employees.each do |employee| %>
+      <%= check_box_tag 'employees[]', employee.id %> <%= "  #{employee.name}" %><br>
+    <% end %>
     <%= f.submit %>
-  </div>
 <% end %>

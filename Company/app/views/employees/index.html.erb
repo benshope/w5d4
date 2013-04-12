@@ -1,25 +1,22 @@
-<h1>Listing employees</h1>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Supervisor</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<h1>All Employees</h1>
 
 <% @employees.each do |employee| %>
-  <tr>
-    <td><%= employee.name %></td>
-    <td><%= employee.supervisor %></td>
-    <td><%= link_to 'Show', employee %></td>
-    <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
-    <td><%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+<ul>
+  <li><b><%= employee.name %></b></li>
+  <li>Supervisor: <%= employee.supervisor.name unless employee.supervisor.nil? %></li>
+  <li>Subordinates:  
+    <ul>
+      <% employee.subordinates.each do |subordinate| %>
+        <li><%= subordinate.name %></li>
+      <% end %>
+    </ul>
+  </li>
+  <li><%= link_to "Show", employee %> | 
+  <%= link_to "Edit", edit_employee_path(employee) %> | 
+  <%= link_to "Destroy", employee, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+</ul>
 <% end %>
-</table>
 
-<br />
+<br>
 
 <%= link_to 'New Employee', new_employee_path %>

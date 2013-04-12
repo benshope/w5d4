@@ -7,7 +7,12 @@
 
 <p>
   <b>Supervisor:</b>
-  <%= @team.supervisor %>
+  <%= @team.supervisor.name %>
+</p>
+
+<p>
+  <b>Members:</b>
+  <%= @team.members.map { |member| " #{member.name} " }.join %>
 </p>
 
 
