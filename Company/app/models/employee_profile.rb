@@ -16,4 +16,5 @@
 class EmployeeProfile < ActiveRecord::Base
   belongs_to :employee
   attr_accessible :dob, :favoriteday, :favoritefood, :height, :salary
+  validates :dob, :favoriteday, :favoritefood, :height, :salary, presence: :true
 end

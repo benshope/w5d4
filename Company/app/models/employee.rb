@@ -19,4 +19,5 @@ class Employee < ActiveRecord::Base
 
   has_one :employee_profile, dependent: :destroy
   accepts_nested_attributes_for :employee_profile
+  validates :name, :supervisor, presence: :true
 end

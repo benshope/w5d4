@@ -5,7 +5,7 @@
     <%= f.select :supervisor_id, @employees.map { |employee| [employee.name, employee.id] } %><br>
     <%= f.label :employees, "Team Members" %><br>
     <% @employees.each do |employee| %>
-      <%= check_box_tag 'employees[]', employee.id %> <%= "  #{employee.name}" %><br>
+      <%= check_box_tag 'team[member_ids][]', employee.id %> <%= "  #{employee.name}" %><br>
     <% end %>
     <%= f.submit %>
 <% end %>

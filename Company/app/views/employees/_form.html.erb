@@ -3,7 +3,7 @@
     <%= f.text_field :name %><br>
     <%= f.label :supervisor %><br>
     <%= f.select :supervisor_id, @employees.map { |employee| [employee.name, employee.id] } %><br>
-    <%= form_for :employee_profiles do |epf| %>
+    <%= f.fields_for :employee_profiles do |epf| %>
       <%= epf.label :height, "Height Inches" %><br>
       <%= epf.number_field :height %><br>
       <%= epf.label :salary %><br>
@@ -17,7 +17,7 @@
     <% end %>
     <%= f.label :teams, "Teams" %><br>
     <% @teams.each do |team| %>
-      <%= check_box_tag 'teams[]', team.id %> <%= "  #{team.name}" %><br>
+      <%= check_box_tag 'employee[team_ids][]', team.id %> <%= "  #{team.name}" %><br>
     <% end %>
     <%= f.submit %><br>
 <% end %>

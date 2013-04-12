@@ -19,6 +19,7 @@ class TeamsController < ApplicationController
   end
 
   def create
+    #fail
     @team = Team.new(params[:team])
     if @team.save
       redirect_to team_path(@team)
@@ -30,7 +31,7 @@ class TeamsController < ApplicationController
   def update
     @team = Team.find_by_id(params[:id])
     if @team.update_attributes(params[:team])
-      redirect_to user_path(@team)
+      redirect_to team_path(@team)
     else
       render :edit
     end

@@ -12,7 +12,11 @@
 
 <p>
   <b>Members:</b>
-  <%= @team.members.map { |member| " #{member.name} " }.join %>
+  <ul>
+	  <% @team.members.each do |member| %>
+	    <li><%= member.name %></li>
+	  <% end %>
+   </ul>
 </p>
 
 
