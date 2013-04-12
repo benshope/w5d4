@@ -8,7 +8,7 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #
-
+#REV: looks good.
 class Employee < ActiveRecord::Base
   has_many :subordinates, class_name: "Employee", foreign_key: "supervisor_id"
   belongs_to :supervisor, class_name: "Employee"
