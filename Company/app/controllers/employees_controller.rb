@@ -6,12 +6,12 @@ class EmployeesController < ApplicationController
 
   def show
     @employee = Employee.find(params[:id])
-    @profile = EmployeeProfile.find_by_employee_id(params[:id])
+    @profile = EmployeeProfile.find_by_employee_id(params[:id]) #REV: moot, but you could also just do @employee.profile.
   end
 
   def new
     @employee = Employee.new
-    @employees = Employee.all
+    @employees = Employee.all #REV: you might consider filtering out the employee herself from this list.
     @teams = Team.all
     #@employee.employeeprofiles.build
   end
