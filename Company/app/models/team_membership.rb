@@ -8,7 +8,7 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
-
+#REV: All of your associations look good.
 class TeamMembership < ActiveRecord::Base
   belongs_to :employee
   belongs_to :team
