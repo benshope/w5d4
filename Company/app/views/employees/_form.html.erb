@@ -17,7 +17,14 @@
     <% end %>
     <%= f.label :teams, "Teams" %><br>
     <% @teams.each do |team| %>
-      <%= check_box_tag 'employee[team_ids][]', team.id %> <%= "  #{team.name}" %><br>
+      <%= check_box_tag 'employee[team_ids][]', team.id, (checked = @employee.teams.include?(team))%> <%= "  #{team.name}" %><br>
     <% end %>
+    <%= hidden_field_tag 'employee[team_ids][]' %>
+    Subordinates:<br>
+    <% @employees.each do |employee| %>
+      <%= check_box_tag 'employee[subordinate_ids][]', employee.id, (checked = @employee.subordinates.include?(employee) %><%= "  #{employee.name}" %><br>
+    <% end %>
+    <%= hidden_field_tag 'employee[subordinate_ids][]' %>
+
     <%= f.submit %><br>
 <% end %>

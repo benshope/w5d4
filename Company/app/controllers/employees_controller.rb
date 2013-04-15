@@ -13,7 +13,7 @@ class EmployeesController < ApplicationController
     @employee = Employee.new
     @employees = Employee.all
     @teams = Team.all
-    #@employee.employeeprofiles.build
+    3.times { @employee.build_employee_profile }
   end
 
   def edit

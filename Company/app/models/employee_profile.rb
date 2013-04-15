@@ -14,7 +14,11 @@
 #
 
 class EmployeeProfile < ActiveRecord::Base
-  belongs_to :employee
   attr_accessible :dob, :favoriteday, :favoritefood, :height, :salary
-  validates :dob, :favoriteday, :favoritefood, :height, :salary, presence: :true
+
+  belongs_to :employee,
+  	foreign_key: :profile_id
+  	inverse_of: :employee_profile
+
+  #validates :dob, :favoriteday, :favoritefood, :height, :salary, presence: :true
 end

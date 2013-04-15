@@ -10,8 +10,8 @@
 #
 
 class TeamMembership < ActiveRecord::Base
+  attr_accessible :team_id, :employee_id
+
   belongs_to :employee
   belongs_to :team
-  
-  attr_accessible :team_id, :employee_id
 end

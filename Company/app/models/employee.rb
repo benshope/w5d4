@@ -10,14 +10,26 @@
 #
 
 class Employee < ActiveRecord::Base
-  has_many :subordinates, class_name: "Employee", foreign_key: "supervisor_id"
-  belongs_to :supervisor, class_name: "Employee"
-  has_many :team_memberships, foreign_key: :employee_id
-  has_many :teams, through: :team_memberships
-
   attr_accessible :name, :supervisor_id, :employee_profile_attributes
-
-  has_one :employee_profile, dependent: :destroy
   accepts_nested_attributes_for :employee_profile
+
+  belongs_to :supervisor, 
+  	class_name: "Employee"
+  	inverse_of: :subordinates
+
+  has_many :subordinates, 
+  	class_name: "Employee", 
+  	foreign_key: "supervisor_id"
+
+  has_many :team_memberships
+
+  has_many :teams, 
+  	through: :team_memberships
+
+  has_one :employee_profile, 
+  	dependent: :destroy
+
+  accepts_nested_attributes_for :employee_profile
+
   validates :name, :supervisor, presence: :true
 end
